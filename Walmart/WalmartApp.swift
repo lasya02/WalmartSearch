@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct WalmartApp: App {
+    @StateObject var cm = CartViewModel()
+    @StateObject var vm = SearchViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(vm: vm, cm: cm)
         }
     }
 }

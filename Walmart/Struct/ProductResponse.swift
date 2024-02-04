@@ -14,7 +14,7 @@ struct ProductResponse: Codable{
     let limit: Int
 }
 
-struct Product: Codable, Identifiable{
+struct Product: Codable, Identifiable, Equatable{
     let id: Int
     let title: String
     let description: String

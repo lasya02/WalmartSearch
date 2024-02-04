@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
-    @StateObject private var vm = SearchViewModel()
-    @State private var name = ""
-    
+    @ObservedObject var vm: SearchViewModel
+    @ObservedObject var cm: CartViewModel
+    @State  var name = ""
     
     @ViewBuilder
     private var idleView: some View {
@@ -25,10 +25,12 @@ struct ContentView: View {
     
     @ViewBuilder
     private func productsList(_ products: [Product]) -> some View {
+        @State var inCart = false
+        
         ForEach(products) { product in
             VStack(alignment: .leading) {
                 NavigationLink {
-                    DetailView(name: product)
+                    DetailView(name: product, cm: cm)
                 } label: {
                     HStack(spacing: 20){
                         AsyncImage(url: URL(string: product.images[0]))
@@ -72,22 +74,39 @@ struct ContentView: View {
                                     .font(.footnote)
                             }
                             
-                            
-                            Button("Add To Cart") {
-                                vm.addToCart()
+                            Button {
+                                inCart.toggle()
+                                if inCart{
+                                    cm.removeFromCart(product: product)
+                                }
+                                else{
+                                    cm.addToCart(product: product)
+                                }
+                            } label: {
+                                if inCart{
+                                    Text("Remove From Cart")
+                                }
+                                else{
+                                    Text("Add to Cart")
+                                }
                             }
                             .foregroundStyle(.white)
                             .frame(maxWidth: .infinity, alignment: .center).padding(10)
                             .background(Color.blue).cornerRadius(20)
                             
                             
-                            
                         }
+                        
                     }
                     
                     
+                    
                 }
+                
+                
             }
+            
+            
             
         }
     }
@@ -116,6 +135,7 @@ struct ContentView: View {
                                         .foregroundStyle(.black)
                                     TextField("Search...", text: $vm.searchText)
                                         .foregroundStyle(.black)
+                                    
                                     Image(systemName: "barcode.viewfinder")
                                         .foregroundStyle(.black)
                                 }
@@ -131,10 +151,18 @@ struct ContentView: View {
                                     
                                 }
                                 VStack{
-                                    Image(systemName: "cart")
-                                        .foregroundStyle(.white)
-                                    Text("$0.00")
-                                        .foregroundStyle(.white)
+                                    NavigationLink(destination: {
+                                        CartView(cm: cm)
+                                    }, label: {
+                                        VStack{
+                                            Image(systemName: "cart")
+                                                .foregroundStyle(.white)
+                                            Text("\(cm.totalPrice, specifier: "%.2f")")
+                                                .foregroundStyle(.white)
+                                        }
+                                        
+                                    })
+                                    
                                     
                                 }
                             }
@@ -155,6 +183,47 @@ struct ContentView: View {
                 
                 
                 VStack(alignment: .leading, spacing: 5){
+                    
+                    Menu("Filter"){
+                        Menu("Price"){
+                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Text("0-25")
+                            })
+                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Text("25-50")
+                            })
+                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Text("50-150")
+                            })
+                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Text("150-500")
+                            })
+                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Text("500+")
+                            })
+                        }
+                        Menu("Rating"){
+                            Button(action: {
+                            }, label: {
+                                Text("1+")
+                            })
+                            
+                            Button(action: {
+                            }, label: {
+                                Text("2+")
+                            })
+                            Button(action: {
+                            }, label: {
+                                Text("3+")
+                            })
+                            Button(action: {
+                            }, label: {
+                                Text("4+")
+                            })
+                            
+                        }
+                    }
+                    
                     
                     Text("Results for \"\(vm.searchText)\"")
                         .bold()
@@ -198,5 +267,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(vm: SearchViewModel(), cm: CartViewModel())
 }

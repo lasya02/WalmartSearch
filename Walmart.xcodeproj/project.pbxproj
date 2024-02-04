@@ -16,6 +16,8 @@
 		A81538D42B6EB8E5006DF39F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81538D32B6EB8E5006DF39F /* SearchViewModel.swift */; };
 		A81538D62B6FD59E006DF39F /* StarRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81538D52B6FD59E006DF39F /* StarRating.swift */; };
 		A81538D82B6FF69B006DF39F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81538D72B6FF69B006DF39F /* DetailView.swift */; };
+		A81538DA2B7005B8006DF39F /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81538D92B7005B8006DF39F /* CartViewModel.swift */; };
+		A81538DC2B70089C006DF39F /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81538DB2B70089C006DF39F /* CartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		A81538D32B6EB8E5006DF39F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		A81538D52B6FD59E006DF39F /* StarRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRating.swift; sourceTree = "<group>"; };
 		A81538D72B6FF69B006DF39F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		A81538D92B7005B8006DF39F /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		A81538DB2B70089C006DF39F /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +65,11 @@
 		A81538C02B6E991D006DF39F /* Walmart */ = {
 			isa = PBXGroup;
 			children = (
-				A81538D72B6FF69B006DF39F /* DetailView.swift */,
+				A81538DF2B700D13006DF39F /* ViewModel */,
+				A81538DD2B700CF8006DF39F /* View */,
 				A81538C12B6E991D006DF39F /* WalmartApp.swift */,
-				A81538C32B6E991D006DF39F /* ContentView.swift */,
-				A81538D32B6EB8E5006DF39F /* SearchViewModel.swift */,
-				A81538CF2B6E9D43006DF39F /* ProductResponse.swift */,
+				A81538E02B700D21006DF39F /* Struct */,
 				A81538D12B6E9DF8006DF39F /* SearchService.swift */,
-				A81538D52B6FD59E006DF39F /* StarRating.swift */,
 				A81538C52B6E9920006DF39F /* Assets.xcassets */,
 				A81538C72B6E9920006DF39F /* Preview Content */,
 			);
@@ -80,6 +82,34 @@
 				A81538C82B6E9920006DF39F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A81538DD2B700CF8006DF39F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A81538DB2B70089C006DF39F /* CartView.swift */,
+				A81538C32B6E991D006DF39F /* ContentView.swift */,
+				A81538D72B6FF69B006DF39F /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A81538DF2B700D13006DF39F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A81538D32B6EB8E5006DF39F /* SearchViewModel.swift */,
+				A81538D92B7005B8006DF39F /* CartViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		A81538E02B700D21006DF39F /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				A81538D52B6FD59E006DF39F /* StarRating.swift */,
+				A81538CF2B6E9D43006DF39F /* ProductResponse.swift */,
+			);
+			path = Struct;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,10 +182,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A81538DC2B70089C006DF39F /* CartView.swift in Sources */,
 				A81538D02B6E9D43006DF39F /* ProductResponse.swift in Sources */,
 				A81538D42B6EB8E5006DF39F /* SearchViewModel.swift in Sources */,
 				A81538D62B6FD59E006DF39F /* StarRating.swift in Sources */,
 				A81538D82B6FF69B006DF39F /* DetailView.swift in Sources */,
+				A81538DA2B7005B8006DF39F /* CartViewModel.swift in Sources */,
 				A81538D22B6E9DF8006DF39F /* SearchService.swift in Sources */,
 				A81538C42B6E991D006DF39F /* ContentView.swift in Sources */,
 				A81538C22B6E991D006DF39F /* WalmartApp.swift in Sources */,

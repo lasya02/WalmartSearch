@@ -57,7 +57,28 @@ class SearchViewModel: ObservableObject {
         }
     }
     
-    func addToCart() {
+    func filterRating(rating: Double) {
+        print("entered")
+        
+        do {
+            self.state = .loading
+            
+            let filteredProducts: [Product] = products.filter { name in
+                print(name.rating)
+                print(rating)
+                if name.rating >= rating {
+                    return true
+                }
+                else{
+                    return false
+                }
+            }
+            print(filteredProducts)
+            
+            self.state = .success(products: filteredProducts)
+        } 
+        
+       
         
     }
 
